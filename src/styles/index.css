@@ -1,0 +1,29 @@
+:root {
+  --blue: #1e90ff;
+  --white: #ffffff;
+
+  --grey-50: #d1d5db;
+  --grey-100: #f3f4f6;
+  --grey-200: #e5e7eb;
+  --grey-300: #d1d5db;
+  --grey-500: #6b7280;
+  --grey-700: #374151;
+  --grey-900: #111827;
+
+  --cool-grey-100: #f3f4f6;
+  --cool-grey-300: #d1d5db;
+  --cool-grey-900: #111827;
+
+  --indigo-500: #6366f1;
+  --red-600: #dc2626;
+
+  --border-radius-xs: 0.25rem;
+  --border-radius-sm: 0.5rem;
+  --border-radius-regular: 1rem;
+  --border-radius-md: 1.2rem;
+
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-regular: 1rem;
+  --spacing-md: 1.2rem;
+}
