@@ -1,16 +1,24 @@
-import Button from 'components/core/Button';
+import React, {useRef,useEffect} from 'react';
+import {Button,Modal} from 'components/core/';
 import './App.css';
 
 function App() {
   const logSomething = ()=> console.log("hi");
+  
   return (
-    <div className="App">
-      <header className="App-header">
-      <Button type="primary" onClick={logSomething} >
+    <div className="App" inert={true?"":null}>
+        <Button type="primary" onClick={logSomething} >
         Share 
         <img src='icons/share.svg' alt=""/>
       </Button>
-      </header>
+      <Modal isOpen={true}>
+        Hello
+        <Button type="primary" onClick={logSomething} >
+        Share 
+        <img src='icons/share.svg' alt=""/>
+      </Button>
+      </Modal>
+      {/* </header> */}
     </div>
   );
 }
