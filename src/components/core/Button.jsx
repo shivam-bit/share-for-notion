@@ -7,7 +7,7 @@ const Button = ({ type, className, children, ...restProps }) => {
       secondary: 'btn--secondary',
     };
     const buttonClassName = buttonTypes[type?.toLowerCase()] || '';
-    return `btn ${buttonClassName} ${className}`;
+    return `btn ${buttonClassName} ${className ? className : ''}`;
   };
   return (
     <button className={getButtonClassName(type)} {...restProps}>

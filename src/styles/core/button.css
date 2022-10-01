@@ -6,15 +6,30 @@
   border: none;
   border-radius: var(--border-radius-xs);
   line-height: 1.25rem;
-  font-size: var(--font-small);
-  font-weight: var(--font-semi-bold);
+  font-size: var(--font-xs);
+  color: var(--grey-500);
   cursor: pointer;
+  background: inherit;
+  padding: var(--spacing-xs) var(--spacing-sm);
 }
 
 .btn--primary {
   background: var(--cool-grey-900);
-  color: var(--white);
+  color: var(--grey-700);
+  font-size: var(--font-small);
+  font-weight: var(--font-semi-bold);
   padding: var(--spacing-sm) var(--spacing-regular);
+}
+
+.btn--secondary {
+  background: var(--white);
+  color: var(--grey-700);
+  font-size: var(--font-small);
+  font-weight: var(--font-semi-bold);
+  border: 1px solid var(--grey-300);
+  border-radius: calc(var(--border-radius-xs) * 0.75);
+  padding: var(--spacing-sm) var(--spacing-md);
+  line-height: 1rem;
 }
 
 .btn--tag {

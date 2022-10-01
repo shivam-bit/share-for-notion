@@ -1,24 +1,18 @@
-import React, { useRef, useEffect } from 'react';
-import { Button, Modal } from 'components/core/';
+import React, { useRef, useEffect, useState } from 'react';
+import _ from 'lodash';
+import { Button } from 'components/core/';
+import { AccessibilityModal } from 'components/containers';
 import './App.css';
 
 function App() {
   const logSomething = () => console.log('hi');
-
   return (
     <div className="App" inert={true ? '' : null}>
       <Button type="primary" onClick={logSomething}>
         Share
         <img src="icons/share.svg" alt="" />
       </Button>
-      <Modal isOpen={true}>
-        Hello
-        <Button onClick={logSomething} className="btn--tag">
-          Share
-          <img src="icons/cross.svg" alt="" />
-        </Button>
-      </Modal>
-      {/* </header> */}
+      <AccessibilityModal />
     </div>
   );
 }

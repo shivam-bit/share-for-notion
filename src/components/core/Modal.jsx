@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 
-const Modal = ({ isOpen, children, ...restProps }) => {
+const Modal = ({ isOpen, alignment, children, ...restProps }) => {
   const modalRef = useRef(null);
 
   useEffect(() => {
@@ -11,7 +11,11 @@ const Modal = ({ isOpen, children, ...restProps }) => {
   }, [isOpen]);
 
   return (
-    <dialog className="modal" ref={modalRef} {...restProps}>
+    <dialog
+      className={`modal modal--${alignment ? alignment : 'vertical'}`}
+      ref={modalRef}
+      {...restProps}
+    >
       {children}
     </dialog>
   );

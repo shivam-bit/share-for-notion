@@ -1,0 +1,21 @@
+.profile-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: var(--grey-500);
+  color: var(--white);
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-circle {
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.icon-square {
+  border-radius: var(--border-radius-xs);
+  overflow: hidden;
+  border: none;
+}

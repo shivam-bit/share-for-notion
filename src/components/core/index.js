@@ -1,7 +1,4 @@
-import Button  from "./Button";
-import Modal from "./Modal";
-
-export {
-    Button,
-    Modal
-}
+import Button from './Button';
+import Modal from './Modal';
+import ProfileIcon from './ProfileIcon';
+export { Button, Modal, ProfileIcon };

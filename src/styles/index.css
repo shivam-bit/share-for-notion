@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import './core/';
+@import './modules/';
 
 :root {
   --blue: #1e90ff;
@@ -28,8 +29,9 @@
 
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;
+  --spacing-md: 0.75rem;
   --spacing-regular: 1rem;
-  --spacing-md: 1.2rem;
+  --spacing-large: 1.2rem;
 
   --gap: 1rem;
 
@@ -49,4 +51,5 @@
 html,
 body {
   font-family: 'Inter', sans-serif;
+  line-height: 1.25rem;
 }
