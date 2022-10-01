@@ -1,13 +1,13 @@
 import React from 'react';
 
-const Button = ({ type, children, ...restProps }) => {
+const Button = ({ type, className, children, ...restProps }) => {
   const getButtonClassName = (type) => {
     const buttonTypes = {
       primary: 'btn--primary',
       secondary: 'btn--secondary',
     };
     const buttonClassName = buttonTypes[type?.toLowerCase()] || '';
-    return `btn ${buttonClassName}`;
+    return `btn ${buttonClassName} ${className}`;
   };
   return (
     <button className={getButtonClassName(type)} {...restProps}>
