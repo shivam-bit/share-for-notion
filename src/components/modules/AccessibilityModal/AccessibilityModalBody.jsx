@@ -1,16 +1,18 @@
-import React, { useRef, useEffect, useReducer } from 'react';
-import _ from 'lodash';
-import { Button, ProfileIcon } from 'components/core';
+import React, { useEffect, useReducer } from 'react';
+import { ProfileIcon } from 'components/core';
 import { useKeyPress } from 'hooks';
+import { flattenForNavigation } from 'utils';
 
-const initialState = { selectedIndex: 0 };
+const initialState = { selectedIndex: -1 };
+
 let navigationalArray;
+
 const reducer = (state, action) => {
   switch (action.type) {
     case 'arrowUp':
       return {
         selectedIndex:
-          state.selectedIndex !== 0
+          state.selectedIndex !== 0 && state.selectedIndex !== -1
             ? state.selectedIndex - 1
             : navigationalArray.length - 1,
       };
@@ -28,21 +30,10 @@ const reducer = (state, action) => {
   }
 };
 
-const constructNavigationArray = (data) => {
-  const result = [];
-  Object.keys(data).forEach((objectType) => {
-    data[objectType].forEach((a, index) => {
-      a.id = `${objectType}-${index}`;
-    });
-
-    result.push(...data[objectType]);
-  });
-  return result;
-};
-
-const AccessibilityModalBody = ({ data, children, ...restProps }) => {
+const AccessibilityModalBody = ({ data, addToActiveSelection }) => {
   const arrowUpPressed = useKeyPress('ArrowUp');
   const arrowDownPressed = useKeyPress('ArrowDown');
+
   const [keypressState, keypressDispatch] = useReducer(reducer, initialState);
   useEffect(() => {
     if (arrowUpPressed) {
@@ -57,18 +48,29 @@ const AccessibilityModalBody = ({ data, children, ...restProps }) => {
   }, [arrowDownPressed]);
 
   useEffect(() => {
-    const item = navigationalArray[keypressState.selectedIndex];
+    const item =
+      keypressState.selectedIndex >= 0 &&
+      navigationalArray[keypressState.selectedIndex];
     const activeNode = document.getElementById(item.id);
-    activeNode?.classList.add('accessibility-modal-list__item--active');
+    if (activeNode && document.activeElement !== activeNode) {
+      activeNode?.focus();
+    }
     activeNode?.scrollIntoView();
-    return () => {
-      activeNode?.classList.remove('accessibility-modal-list__item--active');
-    };
   }, [keypressState]);
 
-  console.log(keypressState);
+  const updateSelectedIndex = (itemNodeId) => {
+    keypressDispatch({ type: 'select', payload: itemNodeId });
+  };
 
-  navigationalArray = constructNavigationArray(data);
+  const addItemToShare = (itemType, itemIndex, item) => {
+    navigationalArray.slice(itemIndex, 1);
+    addToActiveSelection({
+      itemType,
+      item,
+    });
+  };
+
+  navigationalArray = flattenForNavigation(data);
 
   return (
     <div className="accessibility-modal__body">
@@ -78,19 +80,31 @@ const AccessibilityModalBody = ({ data, children, ...restProps }) => {
             Select a person
           </div>
           <ul className="accessibility-modal-list__items-container">
-            {data.persons.map(({ name, profileImage, id }, index) => (
-              <li
+            {data.persons.map((person, index) => (
+              <div
                 key={index}
                 className="accessibility-modal-list__item"
-                id={id}
+                id={person.id}
+                role="button"
+                tabIndex={0}
+                onFocus={() => updateSelectedIndex(index)}
+                onClick={() => {
+                  addItemToShare('persons', index, person);
+                }}
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter') {
+                    addItemToShare('persons', index, person);
+                    e.target.blur();
+                  }
+                }}
               >
                 <ProfileIcon
-                  location={profileImage}
+                  location={person.profileImage}
                   type="person"
-                  name={name}
+                  name={person.name}
                 />
-                {name}
-              </li>
+                {person.name}
+              </div>
             ))}
           </ul>
         </div>
@@ -99,15 +113,40 @@ const AccessibilityModalBody = ({ data, children, ...restProps }) => {
         <div className="accessibility-modal-list">
           <div className="accessibility-modal-list__header">Select a group</div>
           <ul className="accessibility-modal-list__items-container">
-            {data.groups.map(({ name, profileImage, id }, index) => (
-              <li
+            {data.groups.map((group, index) => (
+              <div
                 key={index}
                 className="accessibility-modal-list__item"
-                id={id}
+                id={group.id}
+                role="button"
+                tabIndex={0}
+                onFocus={() =>
+                  updateSelectedIndex(
+                    index + (data.persons.length != 0 ? data.persons.length : 0)
+                  )
+                }
+                onClick={() => {
+                  addItemToShare('groups', index, group);
+                }}
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter') {
+                    addItemToShare(
+                      'groups',
+                      index +
+                        (data.persons.length != 0 ? data.persons.length : 0),
+                      group
+                    );
+                    e.target.blur();
+                  }
+                }}
               >
-                <ProfileIcon location={profileImage} type="group" name={name} />
-                {name}
-              </li>
+                <ProfileIcon
+                  location={group.profileImage}
+                  type="group"
+                  name={group.name}
+                />
+                {group.name}
+              </div>
             ))}
           </ul>
         </div>

@@ -16,6 +16,8 @@
   border: none;
   background: var(--grey-100);
   flex-grow: 1;
+  flex-shrink: 1;
+  width: 100%;
 }
 
 .active-share-container__input::placeholder {
@@ -33,9 +35,8 @@
   gap: var(--gap);
   align-items: flex-start;
   line-height: 1.5rem;
-  overflow-y: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  overflow-y: hidden;
+  flex-grow: 1;
 }
 
 .accessibility-modal__body::-webkit-scrollbar {
@@ -71,13 +72,13 @@
   gap: calc(var(--gap) * 0.75);
   color: var(--grey-900);
   border-radius: var(--border-radius-xs);
-
   padding: var(--spacing-sm) var(--spacing-md);
   text-transform: capitalize;
 }
 
-.accessibility-modal-list__item--active {
+.accessibility-modal-list__item:focus {
   background: var(--cool-grey-100);
+  outline: none;
 }
 
 .accessibility-modal-list__header::first-letter,

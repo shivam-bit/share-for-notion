@@ -1,20 +1,30 @@
-import React, { useRef, useEffect } from 'react';
 import { Button } from 'components/core';
 
-const AccessibilityModalHeader = ({ setQuery, children, ...restProps }) => {
+const AccessibilityModalHeader = ({
+  setQuery,
+  activeSelections,
+  removeFromActiveSelection,
+}) => {
   return (
     <div className="accessibility-modal__header">
-      <Button className="btn--tag">
-        Share
-        <img src="icons/cross.svg" alt="" />
-      </Button>
+      {activeSelections.map(({ item }, index) => (
+        <Button
+          className="btn--tag"
+          key={index}
+          onClick={() => removeFromActiveSelection(activeSelections[index])}
+        >
+          {item.name}
+          <img src="icons/cross.svg" alt="" />
+        </Button>
+      ))}
+
       <input
         type="text"
         className="active-share-container__input"
         placeholder="Search emails, names or groups"
         onChange={(e) => setQuery(e.target.value)}
       />
-      <Button className="btn--dropdown">
+      <Button>
         Full access
         <img src="icons/chevron-down.svg" alt="" />
       </Button>

@@ -11,6 +11,7 @@
   cursor: pointer;
   background: inherit;
   padding: var(--spacing-xs) var(--spacing-sm);
+  white-space: nowrap;
 }
 
 .btn--primary {

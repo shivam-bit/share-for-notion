@@ -1,16 +1,6 @@
-import React, { useRef, useEffect } from 'react';
 import { Button } from 'components/core';
 
-const AccessibilityModalFooter = ({ isOpen, children, ...restProps }) => {
-  const modalRef = useRef(null);
-
-  useEffect(() => {
-    if (isOpen) {
-      modalRef.current.showModal();
-    }
-    return () => modalRef?.current?.close();
-  }, [isOpen]);
-
+const AccessibilityModalFooter = () => {
   return (
     <div className="accessibility-modal__footer">
       <Button>
