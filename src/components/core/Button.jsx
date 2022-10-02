@@ -1,19 +1,21 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 
-const Button = ({ type, className, children, ...restProps }) => {
-  const getButtonClassName = (type) => {
-    const buttonTypes = {
-      primary: 'btn--primary',
-      secondary: 'btn--secondary',
+const Button = forwardRef(
+  ({ type, className, children, ...restProps }, ref) => {
+    const getButtonClassName = (type) => {
+      const buttonTypes = {
+        primary: 'btn--primary',
+        secondary: 'btn--secondary',
+      };
+      const buttonClassName = buttonTypes[type?.toLowerCase()] || '';
+      return `btn ${buttonClassName} ${className ? className : ''}`;
     };
-    const buttonClassName = buttonTypes[type?.toLowerCase()] || '';
-    return `btn ${buttonClassName} ${className ? className : ''}`;
-  };
-  return (
-    <button className={getButtonClassName(type)} {...restProps}>
-      {children}
-    </button>
-  );
-};
+    return (
+      <button className={getButtonClassName(type)} {...restProps} ref={ref}>
+        {children}
+      </button>
+    );
+  }
+);
 
 export default Button;

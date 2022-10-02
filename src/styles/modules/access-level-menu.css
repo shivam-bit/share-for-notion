@@ -1,0 +1,34 @@
+.access-level-menu {
+  background: var(--white);
+  padding: var(--spacing-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: calc(var(--gap) * 0.25);
+  border: 1px solid var(--cool-grey-100);
+  border-radius: var(--border-radius-xs);
+  box-shadow: var(--shadow-lg);
+  min-width: 9.5rem;
+  /* position: absolute;
+  bottom: 0px;
+  z-index: 2; */
+}
+
+.access-level-menu__item {
+  padding: var(--spacing-sm);
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.access-level-menu__item:hover {
+  background: var(--cool-grey-100);
+  outline: none;
+}
+
+.access-level-menu__item::first-letter {
+  text-transform: uppercase;
+}
+
+.access-level-menu__item--danger {
+  color: var(--red-600);
+}
