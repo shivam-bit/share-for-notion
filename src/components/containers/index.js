@@ -1,3 +1,3 @@
 import AccessibilityModal from './AccessibilityModal';
-
-export { AccessibilityModal };
+import SharePopover from './SharePopover';
+export { AccessibilityModal, SharePopover };

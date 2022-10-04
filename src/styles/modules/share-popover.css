@@ -1,0 +1,6 @@
+.share-popover__footer {
+  background: var(--grey-100);
+  padding: var(--spacing-xs) var(--spacing-md);
+  display: flex;
+  justify-content: space-between;
+}

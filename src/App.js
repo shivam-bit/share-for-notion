@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import _ from 'lodash';
 import { Button } from 'components/core/';
-import { AccessibilityModal } from 'components/containers';
+import { AccessibilityModal, SharePopover } from 'components/containers';
 import './App.css';
 
 function App() {
@@ -12,6 +12,7 @@ function App() {
         Share
         <img src="icons/share.svg" alt="" />
       </Button>
+      <SharePopover />
       <AccessibilityModal />
     </div>
   );
