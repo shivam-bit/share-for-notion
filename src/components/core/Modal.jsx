@@ -1,14 +1,20 @@
 import React, { useRef, useEffect } from 'react';
 
-const Modal = ({ isOpen, alignment, children, ...restProps }) => {
+const Modal = ({ isOpen, toggleModal, alignment, children, ...restProps }) => {
   const modalRef = useRef(null);
 
   useEffect(() => {
     if (isOpen) {
       modalRef.current.showModal();
+    } else {
+      modalRef?.current?.close();
     }
     return () => modalRef?.current?.close();
   }, [isOpen]);
+
+  setTimeout(() => {
+    toggleModal(false);
+  }, 5000);
 
   return (
     <dialog

@@ -7,7 +7,7 @@ import './App.css';
 function App() {
   const logSomething = () => console.log('hi');
   return (
-    <div className="App" inert={true ? '' : null}>
+    <div className="App">
       <Button type="primary" onClick={logSomething}>
         Share
         <img src="icons/share.svg" alt="" />

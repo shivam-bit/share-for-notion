@@ -12,6 +12,7 @@ import { sortByFrequency, filterByQuery } from 'utils';
 function AccessibilityModal() {
   const logSomething = () => console.log('hi');
   const [query, setQuery] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [userAndGroupsList, setUserAndGroupsList] = useState(data);
   const [activeSelections, setActiveSelections] = useState([]);
 
@@ -52,11 +53,14 @@ function AccessibilityModal() {
       }
       return [...prevActiveSelections];
     });
-    console.log('anx', data);
   };
 
   return (
-    <Modal alignment="vertical" isOpen={true}>
+    <Modal
+      alignment="vertical"
+      isOpen={isModalOpen}
+      toggleModal={setIsModalOpen}
+    >
       <AccessibilityModalHeader
         setQuery={setQuery}
         activeSelections={activeSelections}
