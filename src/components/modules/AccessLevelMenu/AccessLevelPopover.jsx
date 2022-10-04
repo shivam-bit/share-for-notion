@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { Button } from 'components/core';
-const AccessLevelMenu = forwardRef(
+const AccessLevelPopover = forwardRef(
   (
     {
       accessLevels,
@@ -41,4 +41,4 @@ const AccessLevelMenu = forwardRef(
   }
 );
 
-export default AccessLevelMenu;
+export default AccessLevelPopover;
