@@ -9,6 +9,11 @@
   align-items: center;
 }
 
+.profile-icon--large {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
 .icon-circle {
   border-radius: 50%;
   overflow: hidden;

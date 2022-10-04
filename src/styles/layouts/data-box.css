@@ -1,0 +1,25 @@
+.three-col-data-box {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: 1fr;
+  justify-items: stretch;
+  align-items: center;
+  gap: calc(var(--gap) * 0.5);
+}
+
+.three-col-data-box__info {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.three-col-data-box__info--title {
+  line-height: 1.5rem;
+  color: var(--grey-900);
+}
+
+.three-col-data-box__info--desc {
+  line-height: 1.25rem;
+  font-size: var(--font-small);
+  color: var(--grey-500);
+}

@@ -3,7 +3,6 @@
   box-shadow: var(--shadow-lg);
   border-radius: var(--border-radius-sm);
   width: 32rem;
-  height: 16.375rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
