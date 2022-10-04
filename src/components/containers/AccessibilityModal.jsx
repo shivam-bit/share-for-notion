@@ -12,7 +12,7 @@ import { sortByFrequency, filterByQuery } from 'utils';
 function AccessibilityModal() {
   const logSomething = () => console.log('hi');
   const [query, setQuery] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [userAndGroupsList, setUserAndGroupsList] = useState(data);
   const [activeSelections, setActiveSelections] = useState([]);
 

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { forwardRef } from 'react';
 import { Popover } from 'components/core';
 import {
   SharePopoverHeader,
@@ -6,9 +6,9 @@ import {
   SharePopoverFooter,
 } from 'components/modules';
 
-const SharePopover = () => {
+const SharePopover = ({ style, popperRef, ...restProps }) => {
   return (
-    <Popover>
+    <Popover ref={popperRef} style={style} {...restProps}>
       <SharePopoverHeader />
       <SharePopoverBody />
       <SharePopoverFooter />
