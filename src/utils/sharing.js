@@ -35,5 +35,6 @@ export const flattenForNavigation = (data) => {
 
 export const groupByType = (data) => {
   const result = _.groupBy(data, 'itemType');
+  console.log({ result });
   return result;
 };

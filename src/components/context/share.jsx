@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useLayoutEffect } from 'react';
 import { data } from 'fakeData';
 
 export const ShareContext = createContext({});
@@ -35,7 +35,6 @@ export const ShareContextProvider = ({ children }) => {
           );
         }
       );
-      console.log({ targetedItemIndex });
       if (targetedItemIndex > -1) {
         setSelectedUserAndRoles((prevSelectedUserAndRoles) => {
           prevSelectedUserAndRoles[targetedItemIndex].accessLevel =
@@ -45,6 +44,19 @@ export const ShareContextProvider = ({ children }) => {
       }
     }
   };
+
+  useLayoutEffect(() => {
+    const userWorkspaces = userAndGroupsList['workspaces'];
+    setSelectedUserAndRoles(
+      userWorkspaces.map((workspace) => {
+        return {
+          itemType: 'workspaces',
+          item: { ...workspace },
+          accessLevel: accessLevels[0],
+        };
+      })
+    );
+  }, []);
 
   const value = {
     isAccessibilityModalOpen,

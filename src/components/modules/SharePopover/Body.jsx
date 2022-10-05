@@ -22,21 +22,33 @@ const Body = () => {
         />
         <Button className="share-popover__body--invite-button">Invite</Button>
       </div>
-      <ThreeColumnDataBox
-        icon={
-          <ProfileIcon
-            location="workspaces/oslash-workspace.svg"
-            type="person"
-            name={'person.name'}
-            className="profile-icon--large"
-          />
-        }
-        title={`Everyone at ${'Oslash'}`}
-        description={` ${'25'} workspace members`}
-        actionButton={
-          <AccessLevelMenu entityType={'workspace'} email={''} name={''} />
-        }
-      />
+      {shareData['workspaces']?.length !== 0
+        ? shareData['workspaces']?.map(({ item, accessLevel }, index) => {
+            return (
+              <ThreeColumnDataBox
+                key={index}
+                icon={
+                  <ProfileIcon
+                    location={item.profileImage}
+                    type="person"
+                    name={item.name}
+                    className="profile-icon--large"
+                  />
+                }
+                title={`Everyone in ${item.name}`}
+                description={` ${item.membersCount} group members`}
+                actionButton={
+                  <AccessLevelMenu
+                    defaultAccessLevel={accessLevel}
+                    entityType={'workspaces'}
+                    email={''}
+                    name={item.name}
+                  />
+                }
+              />
+            );
+          })
+        : null}
       {shareData['groups']?.length !== 0
         ? shareData['groups']?.map(({ item, accessLevel }, index) => {
             return (
