@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useEffect } from 'react';
 import { Button } from 'components/core';
 const AccessLevelPopover = forwardRef(
   (
@@ -16,6 +16,7 @@ const AccessLevelPopover = forwardRef(
       setAccessLevel(accessLevels[levelIndex]);
       toggleAccessLevelMenu();
     };
+
     return (
       <div
         className="access-level-menu"

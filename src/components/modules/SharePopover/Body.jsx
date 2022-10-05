@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ShareContext } from 'components/context';
 import { Button, ProfileIcon } from 'components/core';
 import { ThreeColumnDataBox } from 'components/layout';
 import { AccessLevelMenu } from 'components/modules';
+import { groupByType } from 'utils';
 
 const Body = () => {
+  const { setIsAccessibilityModalOpen, selectedUserAndRoles } =
+    useContext(ShareContext);
+  const shareData = groupByType(selectedUserAndRoles) || [];
+
   return (
     <div className="share-popover__body">
       <div className="share-popover__body--input-container">
@@ -11,36 +17,81 @@ const Body = () => {
           type="text"
           className="share-popover__body--input-box"
           placeholder="People, emails, groups"
+          onClick={() => setIsAccessibilityModalOpen(true)}
+          onChange={() => setIsAccessibilityModalOpen(true)}
         />
         <Button className="share-popover__body--invite-button">Invite</Button>
       </div>
+      <ThreeColumnDataBox
+        icon={
+          <ProfileIcon
+            location="workspaces/oslash-workspace.svg"
+            type="person"
+            name={'person.name'}
+            className="profile-icon--large"
+          />
+        }
+        title={`Everyone at ${'Oslash'}`}
+        description={` ${'25'} workspace members`}
+        actionButton={
+          <AccessLevelMenu entityType={'workspace'} email={''} name={''} />
+        }
+      />
+      {shareData['groups']?.length !== 0
+        ? shareData['groups']?.map(({ item, accessLevel }, index) => {
+            return (
+              <ThreeColumnDataBox
+                key={index}
+                icon={
+                  <ProfileIcon
+                    location={item.profileImage}
+                    type="group"
+                    name={item.name}
+                    className="profile-icon--large"
+                  />
+                }
+                title={`Everyone in ${item.name}`}
+                description={` ${item.membersCount} group members`}
+                actionButton={
+                  <AccessLevelMenu
+                    defaultAccessLevel={accessLevel}
+                    entityType={'groups'}
+                    email={''}
+                    name={item.name}
+                  />
+                }
+              />
+            );
+          })
+        : null}
 
-      <ThreeColumnDataBox
-        icon={
-          <ProfileIcon
-            location="workspaces/oslash-workspace.svg"
-            type="person"
-            name={'person.name'}
-            className="profile-icon--large"
-          />
-        }
-        title={`Everyone at ${'Oslash'}`}
-        description={` ${'25'} workspace members`}
-        actionButton={<AccessLevelMenu />}
-      />
-      <ThreeColumnDataBox
-        icon={
-          <ProfileIcon
-            location="workspaces/oslash-workspace.svg"
-            type="person"
-            name={'person.name'}
-            className="profile-icon--large"
-          />
-        }
-        title={`Everyone at ${'Oslash'}`}
-        description={` ${'25'} workspace members`}
-        actionButton={<AccessLevelMenu />}
-      />
+      {shareData['persons']?.length !== 0
+        ? shareData['persons']?.map(({ item, accessLevel }, index) => {
+            return (
+              <ThreeColumnDataBox
+                key={index}
+                icon={
+                  <ProfileIcon
+                    location={item.profileImage}
+                    type="person"
+                    name={item.name}
+                    className="profile-icon--large"
+                  />
+                }
+                title={item.name}
+                description={item.email}
+                actionButton={
+                  <AccessLevelMenu
+                    defaultAccessLevel={accessLevel}
+                    entityType={'persons'}
+                    email={item.email}
+                    name={item.name}
+                  />
+                }
+              />
+            );
+          })
+        : null}
     </div>
   );
 };

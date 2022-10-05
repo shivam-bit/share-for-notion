@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { ShareContext } from 'components/context';
 import { Button } from 'components/core';
 import { AccessLevelMenu } from 'components/modules';
 const AccessibilityModalHeader = ({
@@ -6,6 +7,12 @@ const AccessibilityModalHeader = ({
   activeSelections,
   removeFromActiveSelection,
 }) => {
+  const { saveSelections, setIsAccessibilityModalOpen } =
+    useContext(ShareContext);
+  const handleInvite = () => {
+    saveSelections();
+    setIsAccessibilityModalOpen(false);
+  };
   return (
     <div className="accessibility-modal__header">
       {activeSelections.map(({ item }, index) => (
@@ -27,7 +34,9 @@ const AccessibilityModalHeader = ({
       />
       <AccessLevelMenu />
 
-      <Button type="secondary">Invite</Button>
+      <Button type="secondary" onClick={handleInvite}>
+        Invite
+      </Button>
     </div>
   );
 };

@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import _ from 'lodash';
+import { ShareContext } from 'components/context';
 import { Modal } from 'components/core/';
 import {
   AccessibilityModalHeader,
@@ -10,11 +11,15 @@ import { data } from 'fakeData';
 import { sortByFrequency, filterByQuery } from 'utils';
 
 function AccessibilityModal() {
-  const logSomething = () => console.log('hi');
+  const {
+    isAccessibilityModalOpen,
+    setIsAccessibilityModalOpen,
+    userAndGroupsList,
+    setUserAndGroupsList,
+    activeSelections,
+    setActiveSelections,
+  } = useContext(ShareContext);
   const [query, setQuery] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [userAndGroupsList, setUserAndGroupsList] = useState(data);
-  const [activeSelections, setActiveSelections] = useState([]);
 
   const addToActiveSelection = (sharedEntity) => {
     userAndGroupsList[sharedEntity.itemType] = userAndGroupsList[
@@ -46,10 +51,6 @@ function AccessibilityModal() {
           1
         )[0];
         userAndGroupsList[removedItem.itemType].push(removedItem.item);
-        console.log(
-          '🚀 ~ file: AccessibilityModal.jsx ~ line 46 ~ setActiveSelections ~ removedItem',
-          removedItem
-        );
       }
       return [...prevActiveSelections];
     });
@@ -58,8 +59,8 @@ function AccessibilityModal() {
   return (
     <Modal
       alignment="vertical"
-      isOpen={isModalOpen}
-      toggleModal={setIsModalOpen}
+      isOpen={isAccessibilityModalOpen}
+      toggleModal={setIsAccessibilityModalOpen}
     >
       <AccessibilityModalHeader
         setQuery={setQuery}

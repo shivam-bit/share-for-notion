@@ -51,7 +51,7 @@ const AccessibilityModalBody = ({ data, addToActiveSelection }) => {
     const item =
       keypressState.selectedIndex >= 0 &&
       navigationalArray[keypressState.selectedIndex];
-    const activeNode = document.getElementById(item.id);
+    const activeNode = document.getElementById(item?.id);
     if (activeNode && document.activeElement !== activeNode) {
       activeNode?.focus();
     }

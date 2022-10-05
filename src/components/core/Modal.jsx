@@ -5,16 +5,12 @@ const Modal = ({ isOpen, toggleModal, alignment, children, ...restProps }) => {
 
   useEffect(() => {
     if (isOpen) {
-      modalRef.current.showModal();
+      modalRef?.current.showModal();
     } else {
       modalRef?.current?.close();
     }
     return () => modalRef?.current?.close();
   }, [isOpen]);
-
-  setTimeout(() => {
-    toggleModal(false);
-  }, 5000);
 
   return (
     <dialog

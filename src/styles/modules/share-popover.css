@@ -26,14 +26,21 @@
   align-items: stretch;
   justify-content: stretch;
   overflow: hidden;
+  position: relative;
 }
+
 .share-popover__body--input-box {
   flex-grow: 1;
   border: none;
-  margin: var(--spacing-sm) var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
 }
 
 .share-popover__body--invite-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  border: none;
   border-left: 1px solid var(--grey-300);
   border-radius: initial;
   background: var(--grey-50);

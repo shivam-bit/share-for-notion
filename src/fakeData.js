@@ -24,16 +24,19 @@ export const data = {
       frequency: 0,
       name: 'Product',
       profileImage: '',
+      membersCount: 25,
     },
     {
       frequency: 0,
       name: 'Engineering',
       profileImage: '',
+      membersCount: 25,
     },
     {
       frequency: 3,
       name: 'Engineering 2',
       profileImage: '',
+      membersCount: 25,
     },
   ],
   workspaces: [
