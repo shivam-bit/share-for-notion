@@ -31,10 +31,11 @@ const reducer = (state, action) => {
 };
 
 const Body = ({ data, addToActiveSelection }) => {
+  // custom hooks for key detection
   const arrowUpPressed = useKeyPress('ArrowUp');
   const arrowDownPressed = useKeyPress('ArrowDown');
-
   const [keypressState, keypressDispatch] = useReducer(reducer, initialState);
+
   useEffect(() => {
     if (arrowUpPressed) {
       keypressDispatch({ type: 'arrowUp' });
@@ -53,11 +54,13 @@ const Body = ({ data, addToActiveSelection }) => {
       navigationalArray[keypressState.selectedIndex];
     const activeNode = document.getElementById(item?.id);
     if (activeNode && document.activeElement !== activeNode) {
+      // focus that node so that tab navigation can continue from it
       activeNode?.focus();
     }
     activeNode?.scrollIntoView();
   }, [keypressState]);
 
+  // updates keypressState using Tab navigation
   const updateSelectedIndex = (itemNodeId) => {
     keypressDispatch({ type: 'select', payload: itemNodeId });
   };
@@ -70,10 +73,12 @@ const Body = ({ data, addToActiveSelection }) => {
     });
   };
 
+  // flattens the fakeData object to create a 1D array that supports navigation
   navigationalArray = flattenForNavigation(data);
 
   return (
     <div className="accessibility-modal__body">
+      {/* Renders all persons */}
       {data.persons.length != 0 ? (
         <div className="accessibility-modal-list">
           <div className="accessibility-modal-list__header">
@@ -109,6 +114,8 @@ const Body = ({ data, addToActiveSelection }) => {
           </ul>
         </div>
       ) : null}
+
+      {/* Renders all groups */}
       {data.groups.length != 0 ? (
         <div className="accessibility-modal-list">
           <div className="accessibility-modal-list__header">Select a group</div>
@@ -121,6 +128,7 @@ const Body = ({ data, addToActiveSelection }) => {
                 role="button"
                 tabIndex={0}
                 onFocus={() =>
+                  // take persons array length into consideration calculate final index position in navigation array.
                   updateSelectedIndex(
                     index + (data.persons.length != 0 ? data.persons.length : 0)
                   )
@@ -130,6 +138,7 @@ const Body = ({ data, addToActiveSelection }) => {
                 }}
                 onKeyPress={(e) => {
                   if (e.key === 'Enter') {
+                    // take persons array length into consideration calculate final index position in navigation array.
                     addItemToShare(
                       'groups',
                       index +

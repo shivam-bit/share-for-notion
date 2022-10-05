@@ -8,6 +8,7 @@ import { groupByType } from 'utils';
 const Body = () => {
   const { setIsAccessibilityModalOpen, selectedUserAndRoles } =
     useContext(ShareContext);
+  // grouping data according to it's type
   const shareData = groupByType(selectedUserAndRoles) || [];
 
   return (
@@ -22,6 +23,8 @@ const Body = () => {
         />
         <Button className="share-popover__body--invite-button">Invite</Button>
       </div>
+
+      {/* Renders all workspaces by default  */}
       {shareData['workspaces']?.length !== 0
         ? shareData['workspaces']?.map(({ item, accessLevel }, index) => {
             return (
@@ -49,6 +52,8 @@ const Body = () => {
             );
           })
         : null}
+
+      {/* Renders all selected groups  */}
       {shareData['groups']?.length !== 0
         ? shareData['groups']?.map(({ item, accessLevel }, index) => {
             return (
@@ -77,6 +82,7 @@ const Body = () => {
           })
         : null}
 
+      {/* Renders all selected persons  */}
       {shareData['persons']?.length !== 0
         ? shareData['persons']?.map(({ item, accessLevel }, index) => {
             return (

@@ -9,6 +9,7 @@ function App() {
   const [sharePopover, setSharePopover] = useState();
   const [isSharePopoverOpen, setIsSharePopoverOpen] = useState(false);
 
+  // Linking Share popover in reference to the button using popper.js
   const { styles, attributes } = usePopper(shareButton, sharePopover, {
     placement: 'bottom-start',
     modifiers: [

@@ -1,4 +1,3 @@
-import React, { useState, useEffect, useContext } from 'react';
 import { Popover } from 'components/core';
 import {
   SharePopoverHeader,
@@ -7,19 +6,11 @@ import {
 } from 'components/modules';
 
 const SharePopover = ({ style, popperRef, ...restProps }) => {
-  const [isAccessibilityModalOpen, setIsAccessibilityModalOpen] =
-    useState(false);
-  const toggleAccessibilityModal = () => {
-    setIsAccessibilityModalOpen((prevState) => !prevState);
-  };
-  useEffect(() => {
-    console.log(isAccessibilityModalOpen);
-  }, [isAccessibilityModalOpen]);
-
+  // Passing down all the refs, styles and other attributes from popper.js
   return (
     <Popover ref={popperRef} style={style} {...restProps}>
       <SharePopoverHeader />
-      <SharePopoverBody handleInput={toggleAccessibilityModal} />
+      <SharePopoverBody />
       <SharePopoverFooter />
     </Popover>
   );

@@ -3,9 +3,11 @@ import { usePopper } from 'react-popper';
 import { ShareContext } from 'context';
 import AccessLevelPopover from './AccessLevelPopover';
 import { Button } from 'components/core';
+
+const accessLevels = ['Full access', 'Can edit', 'Can view', 'No access'];
+
 const AccessLevelMenu = ({ defaultAccessLevel, entityType, email, name }) => {
   const { updateAccessLevel } = useContext(ShareContext);
-  const accessLevels = ['Full access', 'Can edit', 'Can view', 'No access'];
   const [accessLevel, setAccessLevel] = useState(
     defaultAccessLevel || accessLevels[0]
   );
@@ -13,6 +15,8 @@ const AccessLevelMenu = ({ defaultAccessLevel, entityType, email, name }) => {
   const [accessLevelModal, setAccessLevelModal] = useState();
   const [isAccessLevelPopoverOpen, setIsAccessLevelPopoverOpen] =
     useState(false);
+
+  // link popover to access level button
   const { styles, attributes } = usePopper(
     accessLevelButton,
     accessLevelModal,
@@ -20,6 +24,8 @@ const AccessLevelMenu = ({ defaultAccessLevel, entityType, email, name }) => {
       placement: 'bottom-end',
     }
   );
+
+  // updates access level in context
   useEffect(() => {
     updateAccessLevel(accessLevel, entityType, email, name);
   }, [accessLevel]);

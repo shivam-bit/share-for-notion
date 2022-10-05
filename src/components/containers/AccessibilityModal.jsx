@@ -32,12 +32,15 @@ function AccessibilityModal() {
       sharedEntity,
     ]);
   };
+
+  // updates result according to searched text
   useEffect(() => {
     const clonedDataObject = _.cloneDeep(data);
     filterByQuery(query, clonedDataObject);
     setUserAndGroupsList(clonedDataObject);
   }, [query]);
 
+  // handles tag deletion
   const removeFromActiveSelection = (data) => {
     setActiveSelections((prevActiveSelections) => {
       const itemToBeRemovedIndex = prevActiveSelections.findIndex(
@@ -50,6 +53,7 @@ function AccessibilityModal() {
           itemToBeRemovedIndex,
           1
         )[0];
+        // adding back to list
         userAndGroupsList[removedItem.itemType].push(removedItem.item);
       }
       return [...prevActiveSelections];

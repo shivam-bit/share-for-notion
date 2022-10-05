@@ -7,7 +7,9 @@ const Header = ({ setQuery, activeSelections, removeFromActiveSelection }) => {
   const { saveSelections, setIsAccessibilityModalOpen } =
     useContext(ShareContext);
   const handleInvite = () => {
+    // save all active selections to popover
     saveSelections();
+    // close modal
     setIsAccessibilityModalOpen(false);
   };
   return (
