@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { ShareContext } from 'components/context';
+import { ShareContext } from 'context';
 import { ToggleSwitch } from 'components/core';
 import { ThreeColumnDataBox } from 'components/layout';
 const Header = () => {

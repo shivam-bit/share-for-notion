@@ -1,6 +1,6 @@
-import AccessibilityModalHeader from './AccessibilityModalHeader';
-import AccessibilityModalFooter from './AccessibilityModalFooter';
-import AccessibilityModalBody from './AccessibilityModalBody';
+import AccessibilityModalHeader from './Header';
+import AccessibilityModalFooter from './Footer';
+import AccessibilityModalBody from './Body';
 
 export {
   AccessibilityModalHeader,

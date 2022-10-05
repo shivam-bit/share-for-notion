@@ -30,7 +30,7 @@ const reducer = (state, action) => {
   }
 };
 
-const AccessibilityModalBody = ({ data, addToActiveSelection }) => {
+const Body = ({ data, addToActiveSelection }) => {
   const arrowUpPressed = useKeyPress('ArrowUp');
   const arrowDownPressed = useKeyPress('ArrowDown');
 
@@ -155,4 +155,4 @@ const AccessibilityModalBody = ({ data, addToActiveSelection }) => {
   );
 };
 
-export default AccessibilityModalBody;
+export default Body;

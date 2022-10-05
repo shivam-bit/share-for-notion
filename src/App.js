@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import _ from 'lodash';
 import { usePopper } from 'react-popper';
-import { ShareContextProvider } from 'components/context';
+import { ShareContextProvider } from 'context';
 import { Button } from 'components/core/';
 import { AccessibilityModal, SharePopover } from 'components/containers';
-import './App.css';
 
 function App() {
   const [shareButton, setShareButton] = useState();

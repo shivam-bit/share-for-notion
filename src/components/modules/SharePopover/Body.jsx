@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { ShareContext } from 'components/context';
+import { ShareContext } from 'context';
 import { Button, ProfileIcon } from 'components/core';
 import { ThreeColumnDataBox } from 'components/layout';
 import { AccessLevelMenu } from 'components/modules';

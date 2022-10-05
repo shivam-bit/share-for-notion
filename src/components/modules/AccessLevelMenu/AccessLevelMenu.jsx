@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { usePopper } from 'react-popper';
-import { ShareContext } from 'components/context';
+import { ShareContext } from 'context';
 import AccessLevelPopover from './AccessLevelPopover';
 import { Button } from 'components/core';
 const AccessLevelMenu = ({ defaultAccessLevel, entityType, email, name }) => {

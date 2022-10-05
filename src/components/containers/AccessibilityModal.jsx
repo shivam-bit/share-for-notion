@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import _ from 'lodash';
-import { ShareContext } from 'components/context';
+import { ShareContext } from 'context';
 import { Modal } from 'components/core/';
 import {
   AccessibilityModalHeader,

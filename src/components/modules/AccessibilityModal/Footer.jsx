@@ -1,6 +1,6 @@
 import { Button } from 'components/core';
 
-const AccessibilityModalFooter = () => {
+const Footer = () => {
   return (
     <div className="accessibility-modal__footer">
       <Button>
@@ -11,4 +11,4 @@ const AccessibilityModalFooter = () => {
   );
 };
 
-export default AccessibilityModalFooter;
+export default Footer;

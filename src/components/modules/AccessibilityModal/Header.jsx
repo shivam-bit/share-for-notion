@@ -1,12 +1,9 @@
 import React, { useContext, useState } from 'react';
-import { ShareContext } from 'components/context';
+import { ShareContext } from 'context';
 import { Button } from 'components/core';
 import { AccessLevelMenu } from 'components/modules';
-const AccessibilityModalHeader = ({
-  setQuery,
-  activeSelections,
-  removeFromActiveSelection,
-}) => {
+
+const Header = ({ setQuery, activeSelections, removeFromActiveSelection }) => {
   const { saveSelections, setIsAccessibilityModalOpen } =
     useContext(ShareContext);
   const handleInvite = () => {
@@ -41,4 +38,4 @@ const AccessibilityModalHeader = ({
   );
 };
 
-export default AccessibilityModalHeader;
+export default Header;
