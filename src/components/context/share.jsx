@@ -3,14 +3,15 @@ import { data } from 'fakeData';
 
 export const ShareContext = createContext({});
 
+const accessLevels = ['Full access', 'Can edit', 'Can view', 'No access'];
 export const ShareContextProvider = ({ children }) => {
-  const accessLevels = ['Full access', 'Can edit', 'Can view', 'No access'];
   const [isAccessibilityModalOpen, setIsAccessibilityModalOpen] =
     useState(false);
   const [userAndGroupsList, setUserAndGroupsList] = useState(data);
   const [selectedUserAndRoles, setSelectedUserAndRoles] = useState([]);
   const [activeSelections, setActiveSelections] = useState([]);
   const [activeAccessLevel, setActiveAccessLevel] = useState(accessLevels[0]);
+  const [shareToWeb, setShareToWeb] = useState(false);
 
   const saveSelections = () => {
     activeSelections.forEach(
@@ -71,6 +72,8 @@ export const ShareContextProvider = ({ children }) => {
     activeAccessLevel,
     setActiveAccessLevel,
     updateAccessLevel,
+    shareToWeb,
+    setShareToWeb,
   };
   return (
     <ShareContext.Provider value={value}>{children}</ShareContext.Provider>
