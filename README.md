@@ -6,7 +6,7 @@ cd share-for-notion/
 npm i
 npm run start
 ```
-
+Then open http://localhost:3000/
 
 
 **Live - [share-for-notion.vercel.app](http://share-for-notion.vercel.app/)**
