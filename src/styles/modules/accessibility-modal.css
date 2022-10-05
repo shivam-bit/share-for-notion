@@ -59,6 +59,9 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+.accessibility-modal-list__items-container::-webkit-scrollbar {
+  display: none;
+}
 .accessibility-modal-list__header {
   font-weight: var(--font-semi-bold);
   color: var(--grey-700);
