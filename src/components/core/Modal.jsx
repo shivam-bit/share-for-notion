@@ -6,10 +6,14 @@ const Modal = ({ isOpen, toggleModal, alignment, children, ...restProps }) => {
   useEffect(() => {
     if (isOpen) {
       modalRef?.current.showModal();
+      document.body.style.position = 'fixed';
     } else {
       modalRef?.current?.close();
     }
-    return () => modalRef?.current?.close();
+    return () => {
+      document.body.style.position = '';
+      modalRef?.current?.close();
+    };
   }, [isOpen]);
 
   return (
