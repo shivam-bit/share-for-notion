@@ -11,8 +11,7 @@ Then open http://localhost:3000/
 
 **Live - [share-for-notion.vercel.app](http://share-for-notion.vercel.app/)**
 
-** \
-Goal** : 
+**Goal** : 
 
 To build a re-usable notion, share widget component with plain CSS + any JavaScript Framework.
 
