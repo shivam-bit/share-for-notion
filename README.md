@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+**Local setup**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+```sh
+git clone https://github.com/shivam-bit/share-for-notion.git
+cd share-for-notion/
+npm i
+npm run start
+```
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `npm start`
+**Live - [share-for-notion.vercel.app](http://share-for-notion.vercel.app/)**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+** \
+Goal** : 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+To build a re-usable notion, share widget component with plain CSS + any JavaScript Framework.
 
-### `npm test`
+**My thought process**:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Since plain CSS has been asked to use, I can't even use scss.
+2. Since we can use any javascript framework, I will start with react.js as I haven't used it for quite a long and this assignment will act as a refresher.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+	**Project structure**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. Then I was thinking about the project structure, which was the most confusing part. Since we need to use plain CSS, one of the other things that I assumed is that we don't need to use any design component library or extra packages for the UI in react.js.
+2. I tried to follow a combination of the atomic design system and the container-view design system. 
+3. So I built a bunch of core components like button, popover modal etc., which I believe can be extended to any other new feature.
+4. Then I built modules which are a combination of a bunch of core components and some specific logic.
+5. After which, I built a layout folder. Layouts components are responsible for data layout into a specific form without any business logic.
+6. Then we got containers, which are collections of modules, core components and layouts with business logic. 
+7. I created a share context to share states between components and prevent props drilling with minimal propeties. 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+	**CSS structure**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+1. I have divided the css into similar folder architecture as react so that we don't need to search for classes.
+2. All shared CSS properties are declared in index.css as a variable so that we use them anywhere and have a single source of truth.
+3.  I have followed the CSS BEM methodology for my CSS class name.
+4. I was missing scss as I could easily have used mixins and extended property.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**Pending Tasks**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+1. Unit Tests (in -progress)
+2. Storybook Implementation (Pending)
 
-### Analyzing the Bundle Size
+**Issues**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Close Modal when clicking outside
+2. Close all popovers when the sibling popover opens up.
+3. Close popover when clicked outside.
+4. Look for performance improvement.
